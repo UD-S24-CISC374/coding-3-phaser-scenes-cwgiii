@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import FpsText from "../objects/fpsText";
 
-export default class MainScene extends Phaser.Scene {
+export default class sceneThree extends Phaser.Scene {
     fpsText: FpsText;
     private player?: Phaser.Physics.Arcade.Sprite;
     private bombs?: Phaser.Physics.Arcade.Group;
@@ -12,21 +12,23 @@ export default class MainScene extends Phaser.Scene {
     private playAgain: Phaser.GameObjects.Text;
 
     constructor() {
-        super({ key: "MainScene" });
+        super({ key: "sceneThree" });
     }
 
     create() {
         const cameraWidth = this.cameras.main.width;
         const cameraHeight = this.cameras.main.height;
-        const background = this.add.image(0, 0, "background").setOrigin(0);
-        background.setScale(
+        const backgroundThree = this.add
+            .image(0, 0, "backgroundThree")
+            .setOrigin(0);
+        backgroundThree.setScale(
             Math.max(
-                cameraWidth / background.width,
-                cameraHeight / background.height
+                cameraWidth / backgroundThree.width,
+                cameraHeight / backgroundThree.height
             )
         );
 
-        this.level = this.add.text(20, 20, "Level: 1", {
+        this.level = this.add.text(20, 20, "Level: 3", {
             color: "White",
             fontSize: "28px",
         });
@@ -68,7 +70,7 @@ export default class MainScene extends Phaser.Scene {
 
         this.stars = this.physics.add.group({
             key: "star",
-            repeat: 3,
+            repeat: 9,
             setXY: {
                 x: Phaser.Math.Between(0, cameraWidth - 50),
                 y: Phaser.Math.Between(0, cameraHeight - 50),
@@ -88,7 +90,7 @@ export default class MainScene extends Phaser.Scene {
 
         this.bombs = this.physics.add.group({
             key: "bomb",
-            repeat: 3,
+            repeat: 9,
             setXY: { x: 12, y: 10, stepX: 100 },
         });
 
@@ -157,8 +159,8 @@ export default class MainScene extends Phaser.Scene {
         const star = s as Phaser.Physics.Arcade.Image;
         star.disableBody(true, true);
         if (this.stars?.countActive(true) === 0) {
-            this.scene.pause("mainScene");
-            this.scene.start("sceneTwo");
+            this.scene.pause("sceneThree");
+            this.scene.start("sceneFour");
         }
     }
 
@@ -181,7 +183,7 @@ export default class MainScene extends Phaser.Scene {
                 this.player?.setVelocityX(0);
                 this.player?.anims.play("turn");
             } else if (this.cursors.space.isDown) {
-                this.scene.pause("MainScene");
+                this.scene.pause("sceneThree");
                 this.scene.start("MainScene");
             } else {
                 this.player?.setVelocityY(0);

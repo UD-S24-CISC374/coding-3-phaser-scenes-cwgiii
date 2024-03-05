@@ -12,6 +12,10 @@ export default class PreloadScene extends Phaser.Scene {
             frameHeight: 48,
         });
         this.load.image("bomb", "assets/bomb.png");
+        this.load.image("star", "assets/star.png");
+        this.load.image("backgroundTwo", "assets/city.jpeg");
+        this.load.image("backgroundThree", "assets/jungle.webp");
+        this.load.image("backgroundFour", "assets/space.webp");
     }
 
     create() {
