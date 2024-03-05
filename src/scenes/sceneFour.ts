@@ -160,7 +160,7 @@ export default class sceneFour extends Phaser.Scene {
         const star = s as Phaser.Physics.Arcade.Image;
         star.disableBody(true, true);
         if (this.stars?.countActive(true) === 0) {
-            this.scene.pause("sceneFour");
+            this.physics.pause();
             this.youWin = this.add.text(
                 this.cameras.main.width / 2 - 75,
                 this.cameras.main.height / 2,
@@ -195,6 +195,7 @@ export default class sceneFour extends Phaser.Scene {
                 this.player?.setVelocityX(0);
                 this.player?.anims.play("turn");
             } else if (this.cursors.space.isDown) {
+                this.scene.pause("sceneFour");
                 this.scene.start("MainScene");
             } else {
                 this.player?.setVelocityY(0);
