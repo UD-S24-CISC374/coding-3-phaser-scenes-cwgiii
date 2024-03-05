@@ -22,7 +22,6 @@ export const CONFIG = {
         default: "arcade",
         arcade: {
             debug: false,
-            gravity: { y: 300 },
         },
     },
     input: {
