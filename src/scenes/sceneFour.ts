@@ -170,7 +170,7 @@ export default class sceneFour extends Phaser.Scene {
             this.playAgain = this.add.text(
                 this.cameras.main.width / 2 - 195,
                 this.cameras.main.height / 2 + 50,
-                "Press space to play again",
+                "Press space to try again",
                 { color: "White", fontSize: "28px" }
             );
         }
