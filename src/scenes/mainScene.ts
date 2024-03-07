@@ -1,14 +1,13 @@
 import Phaser from "phaser";
-import FpsText from "../objects/fpsText";
+import levelText from "../objects/levelText";
 
 export default class MainScene extends Phaser.Scene {
-    fpsText: FpsText;
+    levelText: levelText;
     private player?: Phaser.Physics.Arcade.Sprite;
     private bombs?: Phaser.Physics.Arcade.Group;
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
     private stars?: Phaser.Physics.Arcade.Group;
     private gameOver?: Phaser.GameObjects.Text;
-    private level?: Phaser.GameObjects.Text;
     private playAgain: Phaser.GameObjects.Text;
 
     constructor() {
@@ -16,6 +15,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.levelText = new levelText(this, 1);
         const cameraWidth = this.cameras.main.width;
         const cameraHeight = this.cameras.main.height;
         const background = this.add.image(0, 0, "background").setOrigin(0);
@@ -25,11 +25,6 @@ export default class MainScene extends Phaser.Scene {
                 cameraHeight / background.height
             )
         );
-
-        this.level = this.add.text(20, 20, "Level: 1", {
-            color: "White",
-            fontSize: "28px",
-        });
 
         this.cursors = this.input.keyboard?.createCursorKeys();
 
@@ -119,7 +114,7 @@ export default class MainScene extends Phaser.Scene {
             this
         );
 
-        this.fpsText = new FpsText(this);
+        this.levelText = new levelText(this, 1);
 
         const message = `Phaser v${Phaser.VERSION}`;
         this.add
